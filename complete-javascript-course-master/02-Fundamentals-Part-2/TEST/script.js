@@ -225,3 +225,5 @@
 // }
 // console.log(isThisAValidPassword('Doggie'));
 // console.log(isThisAValidPassword('goodDoggo1'));
+
+// CONTENT206
