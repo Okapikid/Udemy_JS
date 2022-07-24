@@ -10,7 +10,6 @@
 
 // console.log(friends.indexOf("Mo"));
 
-
 // var calcTip = function (bill) {
 //   for (i = 0; i < bills.length; i++) {
 //     if (bill >= 50 && bill <= 300) {
@@ -87,7 +86,6 @@
 //     return (`${auggie.firstName} is a ${this.calcAge()} year old ${auggie.job}, and he has ${this.hasDriversLicense ? "a" : "no"} driver's license.`);
 //   }
 // };
-
 
 // console.log(auggie.getSummary());
 
@@ -227,3 +225,165 @@
 // console.log(isThisAValidPassword('goodDoggo1'));
 
 // CONTENT206
+
+// ---------------------------------------------------------------
+
+// CONSTRUCTORS
+// function Book(title, author, year) {
+//   this.title = title;
+//   this.author = author;
+//   this.year = year;
+//   this.getSummary = function () {
+//     return `${this.title} was written by ${this.author} in ${this.year},`;
+//   };
+// }
+
+// // instantiate an object
+// const book1 = new Book("I wrote a book", "me", "2022");
+// const book2 = new Book("Title", "author", "2022");
+
+// console.log(book1);
+// console.log(book1.getSummary());
+
+// ---------------------------------------------------------------
+
+// PROTOTYPE METHOD
+// function Book(title, author, year) {
+//   this.title = title;
+//   this.author = author;
+//   this.year = year;
+// }
+
+// // getAge
+// Book.prototype.getAge = function () {
+//   const years = 2022 - this.year;
+//   return `${this.title} is ${years} years old.`;
+// };
+
+// // getSummary
+// Book.prototype.getSummary = function () {
+//   return `${this.title} was written by ${this.author} in ${this.year}.`;
+// };
+
+// // revise / change year
+// Book.prototype.revise = function (newYear) {
+//   this.year = newYear;
+//   this.revised = true;
+// };
+
+// // instantiate an object
+// const book1 = new Book("I wrote a book", "me", "2020");
+// const book2 = new Book("Title", "author", "2020");
+
+// console.log(book1);
+// console.log(book1.getSummary());
+// console.log(book1.getAge());
+// book2.revise(2010);
+// console.log(book2);
+
+// ---------------------------------------------------------------
+
+// // INHERITANCE
+// function Book(title, author, year) {
+//   this.title = title;
+//   this.author = author;
+//   this.year = year;
+// }
+
+// // getSummary
+// Book.prototype.getSummary = function () {
+//   return `${this.title} was written by ${this.author} in ${this.year}.`;
+// };
+
+// // MAGAZINE CONSTRUCTOR
+// function Magazine(title, author, year, month) {
+//   Book.call(this, title, author, year);
+//   this.month = month;
+// }
+
+// // INHERIT PROTOTYPE
+// Magazine.prototype = Object.create(Book.prototype);
+
+// // INSTANTIATE MAGAZINE OBJECT
+// const mag1 = new Magazine("Mag one", "Me", "2018", "Feb");
+// console.log(mag1.getSummary());
+
+// ---------------------------------------------------------------
+
+// OBJECT OF PROTOS
+// const bookProtos = {
+//   getSummary: function () {
+//     return `${this.title} was written by ${this.author} in ${this.year}`;
+//   },
+//   getAge: function () {
+//     const years = 2022 - this.year;
+//     return `${this.title} is ${years} years old`;
+//   },
+// };
+
+// // CREATE OBJECT
+// const book1 = Object.create(bookProtos);
+// book1.title = "Book title";
+// book1.author = "Writer Person";
+// book1.year = "2012";
+
+// console.log(book1);
+
+// --------------------------------------------------------------
+
+// ES6 CLASSES
+// class Book {
+//   constructor(title, author, year) {
+//     this.title = title;
+//     this.author = author;
+//     this.year = year;
+//   }
+//   getSummary() {
+//     return `${this.title} was written by ${this.author} in ${this.year}.`;
+//   }
+
+//   getAge() {
+//     const years = 2022 - this.year;
+//     return `${this.title} is ${years} old.`;
+//   }
+
+//   revise(newYear) {
+//     this.year = newYear;
+//     this.revised = true;
+//   }
+// }
+
+// // INSTANTIATE AN OBJECT
+// const book1 = new Book("Book One", "Writer Person", "2020");
+
+// console.log(book1);
+// book1.revise(2018);
+// console.log(book1);
+
+// console.log(book1.getSummary());
+// console.log(book1.getAge());
+
+// --------------------------------------------------------------
+// SUBCLASSES
+class Book {
+  constructor(title, author, year) {
+    this.title = title;
+    this.author = author;
+    this.year = year;
+  }
+  getSummary() {
+    return `${this.title} was written by ${this.author} in ${this.year}`;
+  }
+}
+// MAGAZINE SUBCLASS
+class Magazine extends Book {
+  constructor(title, author, year, month) {
+    super(title, author, year);
+    this.month = month;
+  }
+}
+
+// INSTANTIATE MAGAZINE
+const mag1 = new Magazine("Mag Title", "Writer Person", "2000", "Feb");
+console.log(mag1);
+console.log(mag1.getSummary());
